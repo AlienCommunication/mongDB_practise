@@ -1,0 +1,104 @@
+""" 
+
+CRUD Operation : 
+
+Add new documents to a collection
+
+There are two types of method :
+
+1. db.collection.insertOne()
+2. db.collection.insertMany()
+
+Using : db.collection.insertOne()
+
+"""
+db.newcollection.insertOne({
+    item : "canvas", quantity : 100, tags : ["Cotton", "silk"], size = { h: 29, w:35.5, uom: "cm"}
+})
+
+
+"""
+
+Inserting multiple documents
+
+"""
+
+db.newcollection2.insertMany([
+    { item: "journal", qty: 25, tags: ["blank", "red"], size: { h: 14, w: 21, uom: "cm" } },
+    { item: "mat", qty: 85, tags: ["gray"], size: { h: 27.9, w: 35.5, uom: "cm" } },
+    { item: "mousepad", qty: 25, tags: ["gel", "blue"], size: { h: 19, w: 22.85, uom: "cm" } }
+ ])
+
+
+ """
+ Query Documents
+1. To Read the data inside the database
+
+db.collection.find(query, projection)
+ """
+
+db.newcollection2.find()
+
+"""
+
+Find the every details of the  item where uom= cm .
+
+"""
+db.newcollection2.find({uom : "cm"})
+
+"""
+
+Find the item which has quantity above 25
+
+"""
+
+db.newcollection2.find({price : {$gt : 25 }})
+
+"""
+updage : operation 
+db.collection.updateOne() - Inside this parrenthesis, I only want to update which has id as one, second method will be 
+what do you want to update it to?, We will use $set method in curly braces and give another curly braces which
+will have key and values now, close this method and update it
+
+Example :
+    db.collection.updateOne({_id : 1}, {$set : { stock : 32 }})
+
+"""
+
+db.newcollection2.find({_id : 1}, {$set : { stocl : 32}})
+
+"""
+To delete :
+
+db.collection.deleteOne()
+db.collection.deleteMany()
+
+"""
+
+db.newcollection2.deleteOne({_id : 3})
+
+"""
+
+Relationship in MongoDB
+
+"""
+
+db.newcollection2.insert({
+    id : 3,
+    name : "John",
+    price : 1.5,
+    stock : 59,
+    reviews : [ {
+        customer_name : "Sally",
+        rating : 5,
+        review : "This product is the best product"
+    }]
+
+})
+
+
+
+
+
+
+
